@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 const Campo = styled.div`
@@ -42,11 +42,28 @@ const Boton = styled.button`
 `;
 
 function Formulario() {
+    const [datos, setDatos] = useState({
+        marca: '',
+        year: '',
+        plan: '',
+    });
+
+    // Extraer los valores del state
+    const { marca, year, plan } = datos;
+
+    // Leer los datos del formulario y colocarlos en el state
+    const obtenerInfo = (e) => {
+        setDatos({
+            ...datos,
+            [e.target.name]: e.target.value,
+        });
+    };
+
     return (
         <form>
             <Campo>
                 <Label>Marca</Label>
-                <Select>
+                <Select name='marca' value={marca} onChange={obtenerInfo}>
                     <option value=''>-- Seleccione --</option>
                     <option value='americano'>Americano</option>
                     <option value='europeo'>Europeo</option>
@@ -56,7 +73,7 @@ function Formulario() {
 
             <Campo>
                 <Label>Año</Label>
-                <Select>
+                <Select name='year' value={year} onChange={obtenerInfo}>
                     <option value=''>-- Seleccione --</option>
                     <option value='2021'>2021</option>
                     <option value='2020'>2020</option>
@@ -73,8 +90,21 @@ function Formulario() {
 
             <Campo>
                 <Label>Plan</Label>
-                <InputRadio type='radio' name='plan' value='básico' /> Básico
-                <InputRadio type='radio' name='plan' value='Completo' />{' '}
+                <InputRadio
+                    type='radio'
+                    name='plan'
+                    value='básico'
+                    checked={plan === 'básico'}
+                    onChange={obtenerInfo}
+                />{' '}
+                Básico
+                <InputRadio
+                    type='radio'
+                    name='plan'
+                    value='completo'
+                    checked={plan === 'completo'}
+                    onChange={obtenerInfo}
+                />{' '}
                 Completo
             </Campo>
 
