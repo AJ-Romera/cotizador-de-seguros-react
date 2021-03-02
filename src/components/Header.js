@@ -17,11 +17,9 @@ const TextoHeader = styled.h1`
 
 function Header({ titulo }) {
     return (
-        <div className='header'>
-            <ContenedorHeader>
-                <TextoHeader>{titulo}</TextoHeader>
-            </ContenedorHeader>
-        </div>
+        <ContenedorHeader>
+            <TextoHeader>{titulo}</TextoHeader>
+        </ContenedorHeader>
     );
 }
 
