@@ -28,3 +28,8 @@ export function calcularSegunMarca(marca) {
 export function calcularSegunPlan(plan) {
     return plan === 'basico' ? 1.2 : 1.5;
 }
+
+// Función para que la palabra empiece por mayúsculas
+export function primeraLetraMayuscula(texto) {
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
+}
