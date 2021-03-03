@@ -4,7 +4,7 @@ export function obternerDiferenciaYear(year) {
 }
 
 // Calcula el total a pagar según la marca
-export function CalcularSegunMarca(marca) {
+export function calcularSegunMarca(marca) {
     let incremento;
 
     switch (marca) {
@@ -22,4 +22,9 @@ export function CalcularSegunMarca(marca) {
     }
 
     return incremento;
+}
+
+// Calcula el total a pagar según el tipo de seguro (básico o completo)
+export function calcularSegunPlan(plan) {
+    return plan === 'basico' ? 1.2 : 1.5;
 }

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { obternerDiferenciaYear } from '../helper';
-import { CalcularSegunMarca } from '../helper';
+import {
+    obternerDiferenciaYear,
+    calcularSegunMarca,
+    calcularSegunPlan,
+} from '../helper';
 
 const Campo = styled.div`
     display: flex;
@@ -96,13 +99,16 @@ function Formulario() {
         Americano 15%
         Asiático 5%
         Europeo 30% */
-        resultado *= CalcularSegunMarca(marca);
-
-        console.log(resultado);
+        resultado *= calcularSegunMarca(marca);
 
         /* Plan:
         Básico 20%
         Completo 50% */
+
+        const incrementoPlan = calcularSegunPlan(plan);
+        resultado = parseFloat(resultado * incrementoPlan).toFixed(2);
+
+        console.log(resultado);
 
         // Total
     };
@@ -143,8 +149,8 @@ function Formulario() {
                 <InputRadio
                     type='radio'
                     name='plan'
-                    value='básico'
-                    checked={plan === 'básico'}
+                    value='basico'
+                    checked={plan === 'basico'}
                     onChange={obtenerInfo}
                 />{' '}
                 Básico
