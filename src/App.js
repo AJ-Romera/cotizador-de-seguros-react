@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Formulario from './components/Formulario';
 import Resumen from './components/Resumen';
 import Resultado from './components/Resultado';
+import Spinner from './components/Spinner';
 
 const Contenedor = styled.div`
     max-width: 600px;
@@ -25,6 +26,8 @@ function App() {
         },
     });
 
+    const [cargando, setCargando] = useState(false);
+
     // Extraer datos
     const { cotizacion, datos } = resumen;
 
@@ -33,9 +36,10 @@ function App() {
             <Header titulo='Cotizador de Seguros de Coche' />
 
             <ContenedorFormulario>
-                <Formulario setResumen={setResumen} />
-                <Resumen datos={datos} />
-                <Resultado cotizacion={cotizacion} />
+                <Formulario setResumen={setResumen} setCargando={setCargando} />
+                {cargando ? <Spinner /> : null}
+                {!cargando ? <Resumen datos={datos} /> : null}
+                {!cargando ? <Resultado cotizacion={cotizacion} /> : null}
             </ContenedorFormulario>
         </Contenedor>
     );

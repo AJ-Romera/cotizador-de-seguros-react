@@ -55,7 +55,7 @@ const Error = styled.div`
     margin-bottom: 2rem;
 `;
 
-function Formulario({ setResumen }) {
+function Formulario({ setResumen, setCargando }) {
     const [datos, setDatos] = useState({
         marca: '',
         year: '',
@@ -108,11 +108,19 @@ function Formulario({ setResumen }) {
         const incrementoPlan = calcularSegunPlan(plan);
         resultado = parseFloat(resultado * incrementoPlan).toFixed(2);
 
-        // Total o Resumen
-        setResumen({
-            cotizacion: resultado,
-            datos,
-        });
+        // Cambiar estado de cargando
+        setCargando(true);
+
+        setTimeout(() => {
+            // Elimina el Spinner
+            setCargando(false);
+
+            // Total o Resumen
+            setResumen({
+                cotizacion: resultado,
+                datos,
+            });
+        }, 2000);
     };
 
     return (
