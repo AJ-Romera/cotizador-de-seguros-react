@@ -10,10 +10,6 @@ const ContenedorResumen = styled.div`
     margin-top: 1rem;
 `;
 
-const Ul = styled.ul`
-    padding-left: 0;
-`;
-
 function Resumen({ datos }) {
     // Extraer de datos
     const { marca, year, plan } = datos;
@@ -25,11 +21,11 @@ function Resumen({ datos }) {
     return (
         <ContenedorResumen>
             <h2>Resumen de Cotización</h2>
-            <Ul>
+            <ul>
                 <li>Marca: {primeraLetraMayuscula(marca)} </li>
                 <li>Año del Vehículo: {year} </li>
                 <li>Plan: {primeraLetraMayuscula(plan)} </li>
-            </Ul>
+            </ul>
         </ContenedorResumen>
     );
 }
